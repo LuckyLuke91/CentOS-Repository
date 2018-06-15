@@ -224,7 +224,7 @@ exit 0
 ````````````````````````
 
 
-## CronJob for Repo-Update (Every hour a Repo Update for a Repo-ID):
+## CronJob for Repo-Update (Every hour a Repo-Update for a Repo-ID):
 ``````
 sudo crontab -e
 
