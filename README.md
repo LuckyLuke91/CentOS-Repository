@@ -104,7 +104,7 @@ exit 0
 ````````````````````````
 
 
-## script for centosplus Cron:
+## Script for centosplus Cron:
 
 sudo vi /root/centosplus-rep-sync.sh
 ````````````````````````
@@ -134,7 +134,7 @@ exit 0
 ````````````````````````
 
 
-## script for updates Cron:
+## Script for updates Cron:
 
 sudo vi /root/updates-rep-sync.sh
 ````````````````````````
@@ -164,7 +164,7 @@ exit 0
 ````````````````````````
 
 
-## script for extras Cron:
+## Script for extras Cron:
 
 sudo vi /root/extras-rep-sync.sh
 ````````````````````````
@@ -194,7 +194,7 @@ exit 0
 ````````````````````````
 
 
-## script for epel Cron:
+## Script for epel Cron:
 
 sudo vi /root/epel-rep-sync.sh
 ````````````````````````
