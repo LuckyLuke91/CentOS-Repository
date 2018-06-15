@@ -1,5 +1,9 @@
-# CentOS Repository
+# Local CentOS Repository
 
+
+## First Steps
+
+````````````````````
 sudo yum groupinstall "Einfacher Webserver"
 sudo yum install yum-utils createrepo
 sudo firewall-cmd --add-service http
@@ -18,11 +22,13 @@ sudo restorecon -R -v /var/www/html/*
 sudo firewall-cmd --permanent --add-port=443/tcp
 sudo firewall-cmd --permanent --add-port=80/tcp
 sudo firewall-cmd --reload
+````````````````````
 
------------------------------------------------------------------------------------------------------------------------------------
+
+## Create Repo-File
 
 sudo vi /var/www/html/Update.repo
-
+```````````````````````````````````
 [base]
 name= CentOS-$releasever - Base (mxx)
 baseurl=http://FQDN/repomirror/base/
@@ -57,24 +63,26 @@ baseurl=http://FQDN/repomirror/epel/
 enabled=1
 gpgcheck=1
 gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-7
+```````````````````````````````````
 
------------------------------------------------------------------------------------------------------------------------------------
 
-#REPO Datei auf Client laden:
-
+## Loading Repo-File from Client
+```
 sudo yum install yum-utils
 sudo yum-config-manager --add-repo http://FQDN/repomirror/Update.repo
 sudo rm /etc/yum.repos.d/CentOS-*
+```
 
------------------------------------------------------------------------------------------------------------------------------------
 
-script für base cron (base-rep-sync.sh):
+## Script for base cron:
 
-#!/bin/bash
-#
-# Beschreibung: Skript zur Synchronisierung des RHEL-Repositories
-# auf dem Spiegelserver
-# Autor: Joerg Kastning <joerg(Punkt)kastning(aet)uni-bielefeld.de>
+sudo vi /root/base-rep-sync.sh
+````````````````````````
+> #!/bin/bash
+> #
+> # Beschreibung: Skript zur Synchronisierung des RHEL-Repositories
+> # auf dem Spiegelserver
+> # Autor: Joerg Kastning <joerg(Punkt)kastning(aet)uni-bielefeld.de>
 
 LOG="/var/log/base_reposync.log"
 REPOID="base"
@@ -93,11 +101,13 @@ createrepo -v /var/www/html/$DOWNLOADPATH/$REPOID -g comps.xml >> $LOG
 echo \# `date +%Y-%m-%d` - END CREATEREPO \# >> $LOG
 
 exit 0
+````````````````````````
 
------------------------------------------------------------------------------------------------------------------------------------
 
-script für centosplus cron (centosplus-rep-sync.sh):
+## script for centosplus cron:
 
+sudo vi /root/centosplus-rep-sync.sh
+````````````````````````
 #!/bin/bash
 #
 # Beschreibung: Skript zur Synchronisierung des RHEL-Repositories
@@ -121,10 +131,13 @@ createrepo -v /var/www/html/$DOWNLOADPATH/$REPOID >> $LOG
 echo \# `date +%Y-%m-%d` - END CREATEREPO \# >> $LOG
 
 exit 0
+````````````````````````
 
------------------------------------------------------------------------------------------------------------------------------------
-script für updates cron (updates-rep-sync.sh):
 
+## script for updates cron:
+
+sudo vi /root/updates-rep-sync.sh
+````````````````````````
 #!/bin/bash
 #
 # Beschreibung: Skript zur Synchronisierung des RHEL-Repositories
@@ -148,11 +161,13 @@ createrepo -v /var/www/html/$DOWNLOADPATH/$REPOID >> $LOG
 echo \# `date +%Y-%m-%d` - END CREATEREPO \# >> $LOG
 
 exit 0
+````````````````````````
 
------------------------------------------------------------------------------------------------------------------------------------
 
-script für extras cron (extras-rep-sync.sh):
+## script for extras cron:
 
+sudo vi /root/extras-rep-sync.sh
+````````````````````````
 #!/bin/bash
 #
 # Beschreibung: Skript zur Synchronisierung des RHEL-Repositories
@@ -176,11 +191,13 @@ createrepo -v /var/www/html/$DOWNLOADPATH/$REPOID >> $LOG
 echo \# `date +%Y-%m-%d` - END CREATEREPO \# >> $LOG
 
 exit 0
+````````````````````````
 
------------------------------------------------------------------------------------------------------------------------------------
 
-script für epel cron (epel-rep-sync.sh):
+## script for epel cron:
 
+sudo vi /root/epel-rep-sync.sh
+````````````````````````
 #!/bin/bash
 #
 # Beschreibung: Skript zur Synchronisierung des RHEL-Repositories
@@ -204,11 +221,11 @@ createrepo -v /var/www/html/$DOWNLOADPATH/$REPOID -g comps.xml >> $LOG
 echo \# `date +%Y-%m-%d` - END CREATEREPO \# >> $LOG
 
 exit 0
+````````````````````````
 
------------------------------------------------------------------------------------------------------------------------------------
 
-CronJob für Repo-Update einrichten (Jede Stunde ein Repo Update pro Repo-ID):
-
+## CronJob for Repo-Update (Every hour a Repo Update for a Repo-ID):
+``````
 sudo crontab -e
 
 0 * * * * /root/base-rep-sync.sh
@@ -216,3 +233,4 @@ sudo crontab -e
 20 * * * * /root/updates-rep-sync.sh
 30 * * * * /root/extras-rep-sync.sh
 40 * * * * /root/epel-rep-sync.sh
+``````
