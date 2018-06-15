@@ -74,7 +74,7 @@ sudo rm /etc/yum.repos.d/CentOS-*
 ```
 
 
-## Script for base cron:
+## Script for base Cron:
 
 sudo vi /root/base-rep-sync.sh
 ````````````````````````
@@ -104,7 +104,7 @@ exit 0
 ````````````````````````
 
 
-## script for centosplus cron:
+## script for centosplus Cron:
 
 sudo vi /root/centosplus-rep-sync.sh
 ````````````````````````
@@ -134,7 +134,7 @@ exit 0
 ````````````````````````
 
 
-## script for updates cron:
+## script for updates Cron:
 
 sudo vi /root/updates-rep-sync.sh
 ````````````````````````
@@ -164,7 +164,7 @@ exit 0
 ````````````````````````
 
 
-## script for extras cron:
+## script for extras Cron:
 
 sudo vi /root/extras-rep-sync.sh
 ````````````````````````
@@ -194,7 +194,7 @@ exit 0
 ````````````````````````
 
 
-## script for epel cron:
+## script for epel Cron:
 
 sudo vi /root/epel-rep-sync.sh
 ````````````````````````
