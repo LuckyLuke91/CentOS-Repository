@@ -78,11 +78,11 @@ sudo rm /etc/yum.repos.d/CentOS-*
 
 sudo vi /root/base-rep-sync.sh
 ````````````````````````
-> #!/bin/bash
-> #
-> # Beschreibung: Skript zur Synchronisierung des RHEL-Repositories
-> # auf dem Spiegelserver
-> # Autor: Joerg Kastning <joerg(Punkt)kastning(aet)uni-bielefeld.de>
+#!/bin/bash
+#
+# Beschreibung: Skript zur Synchronisierung des RHEL-Repositories
+# auf dem Spiegelserver
+# Autor: Joerg Kastning <joerg(Punkt)kastning(aet)uni-bielefeld.de>
 
 LOG="/var/log/base_reposync.log"
 REPOID="base"
